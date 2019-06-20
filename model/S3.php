@@ -10,6 +10,9 @@ class S3 {
 	protected function __construct()
 	{
 		$this->config = Config::get('aws');
+		error_log(implode(',', array(
+			'key' => $this->config['key'],
+			'secret' => $this->config['secret'])));
 		$this->client = Aws\S3\S3Client::factory(
 			array(
 				'key' => $this->config['key'],
@@ -26,6 +29,10 @@ class S3 {
 
 	public static function uploadData($key,$data,$type,$acl='private')
 	{
+		error_log($key);
+		error_log($data);
+		error_log($type);
+		error_log($acl);
 		$s3 = static::singleton();
 		$r = $s3->client->putObject(
 			array(
