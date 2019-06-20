@@ -51,6 +51,7 @@ class appActions extends MainActions
 			return $this->response(self::HTTP_400_BADREQUEST);
 		}
 		$image = base64_decode($match[1]);
+		error_log($image);
 
 		$con = mfwDBConnection::getPDO();
 		$con->beginTransaction();
