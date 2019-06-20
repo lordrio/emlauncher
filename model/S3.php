@@ -14,6 +14,7 @@ class S3 {
 			array(
 				'key' => $this->config['key'],
 				'secret' => $this->config['secret'],
+				'endpoint' => $this->config['endpoint'],
 				));
 	}
 	protected function singleton()
