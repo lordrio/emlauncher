@@ -15,7 +15,7 @@ class S3 {
 				'key' => $this->config['key'],
 				'secret' => $this->config['secret'],
 				'signature_version' => 'v4',
-				'base_url' => 'https://play.min.io:9000'
+				'base_url' => 'http://127.0.0.1:9000'
 				));
 	}
 	protected function singleton()
