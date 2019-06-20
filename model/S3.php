@@ -14,8 +14,6 @@ class S3 {
 			array(
 				'key' => $this->config['key'],
 				'secret' => $this->config['secret'],
-				'signature_version' => 'v4',
-				'base_url' => 'http://127.0.0.1:9000'
 				));
 	}
 	protected function singleton()
