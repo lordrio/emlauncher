@@ -1,5 +1,6 @@
 <?php
 require_once APP_ROOT.'/model/Config.php';
+require APP_ROOT . 'libs/aws/aws-autoloader.php';
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
