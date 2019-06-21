@@ -1,9 +1,6 @@
 <?php
 require_once APP_ROOT.'/model/Config.php';
 
-use Aws\S3\S3Client;
-use Aws\S3\Exception\S3Exception;
-
 class S3 {
 
 	protected static $singleton = null;
@@ -16,15 +13,11 @@ class S3 {
 		error_log(implode(',', array(
 			'key' => $this->config['key'],
 			'secret' => $this->config['secret'])));
-		// $this->client = Aws\S3\S3Client::factory(
-		// 	array(
-		// 		// 'key' => $this->config['key'],
-		// 		// 'secret' => $this->config['secret'],
-		// 		));
-		$this->client = new S3Client([
-			'version' => 'latest',
-			'region'  => 'ap-southeast-1'
-		]);
+		$this->client = Aws\S3\S3Client::factory(
+			array(
+				// 'key' => $this->config['key'],
+				// 'secret' => $this->config['secret'],
+				));
 	}
 	protected function singleton()
 	{
@@ -56,22 +49,6 @@ class S3 {
 	{
 		$s3 = static::singleton();
 		$fp = fopen($filename,'rb');
-
-		try {
-			// Upload data.
-			$result = $s3->client->putObject([
-				'Bucket' => $s3->config['bucket_name'],
-				'Key'    => $key + ".txt",
-				'Body'   => 'Hello, world!',
-				'ACL'    => 'public-read'
-			]);
-		
-			// Print the URL to the object.
-			error_log($result['ObjectURL'] . PHP_EOL);
-		} catch (S3Exception $e) {
-			error_log($e->getMessage() . PHP_EOL);
-		}
-
 		$r = $s3->client->putObject(
 			array(
 				'Bucket' => $s3->config['bucket_name'],
