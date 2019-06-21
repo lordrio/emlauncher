@@ -15,8 +15,8 @@ class S3 {
 			'secret' => $this->config['secret'])));
 		$this->client = Aws\S3\S3Client::factory(
 			array(
-				'key' => $this->config['key'],
-				'secret' => $this->config['secret'],
+				// 'key' => $this->config['key'],
+				// 'secret' => $this->config['secret'],
 				));
 	}
 	protected function singleton()
