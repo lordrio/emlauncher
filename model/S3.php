@@ -16,7 +16,7 @@ class S3 {
 			'key' => $this->config['key'],
 			'secret' => $this->config['secret'])));
 		$this->client = Aws\S3\S3Client::factory(array(
-			'region' => 'us-west-2',
+			'region' => 'ap-southeast-1',
 		));
 		$this->client->addSubscriber(LogPlugin::getDebugPlugin());
 	}
