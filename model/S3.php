@@ -15,7 +15,9 @@ class S3 {
 		error_log(implode(',', array(
 			'key' => $this->config['key'],
 			'secret' => $this->config['secret'])));
-		$this->client = Aws\S3\S3Client::factory();
+		$this->client = Aws\S3\S3Client::factory(array(
+			'region' => 'us-west-2',
+		));
 		$this->client->addSubscriber(LogPlugin::getDebugPlugin());
 	}
 	protected function singleton()
