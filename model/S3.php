@@ -1,6 +1,8 @@
 <?php
 require_once APP_ROOT.'/model/Config.php';
 
+use Guzzle\Plugin\Log\LogPlugin;
+
 class S3 {
 
 	protected static $singleton = null;
@@ -13,11 +15,8 @@ class S3 {
 		error_log(implode(',', array(
 			'key' => $this->config['key'],
 			'secret' => $this->config['secret'])));
-		$this->client = Aws\S3\S3Client::factory(
-			array(
-				// 'key' => $this->config['key'],
-				// 'secret' => $this->config['secret'],
-				));
+		$this->client = Aws\S3\S3Client::factory();
+		$this->client->addSubscriber(LogPlugin::getDebugPlugin());
 	}
 	protected function singleton()
 	{
