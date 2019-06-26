@@ -2,6 +2,8 @@
 require_once APP_ROOT.'/model/Config.php';
 
 use Guzzle\Plugin\Log\LogPlugin;
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
 
 class S3 {
 
@@ -34,15 +36,22 @@ class S3 {
 		error_log($data);
 		error_log($type);
 		error_log($acl);
-		$s3 = static::singleton();
-		$r = $s3->client->putObject(
-			array(
-				'Bucket' => $s3->config['bucket_name'],
-				'Key' => $key,
-				'ACL' => $acl,
-				'ContentType' => $type,
-				'Body' => Guzzle\Http\EntityBody::factory($data),
-				));
+		try {
+			// $resource = fopen('/path/to/file', 'r');
+			$resource = Guzzle\Http\EntityBody::factory($data);
+			$s3->client->upload($s3->config['bucket_name'], $key, $resource, $acl);
+		} catch (S3Exception $e) {
+			error_log("There was an error uploading the file.\n" . $e->getMessage());
+		}
+		// $s3 = static::singleton();
+		// $r = $s3->client->putObject(
+		// 	array(
+		// 		'Bucket' => $s3->config['bucket_name'],
+		// 		'Key' => $key,
+		// 		'ACL' => $acl,
+		// 		'ContentType' => $type,
+		// 		'Body' => Guzzle\Http\EntityBody::factory($data),
+		// 		));
 		return $r;
 	}
 
