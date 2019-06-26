@@ -43,7 +43,6 @@ class S3 {
 			$s3 = static::singleton();
 			$s3client = S3Client::factory([
 				'region' => 'ap-southeast-1',
-				'version' => 'latest',
 				'signature' => 'v4'
 			]);
 			$resource = EntityBody::factory($data);
