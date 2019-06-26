@@ -37,6 +37,7 @@ class S3 {
 		error_log($data);
 		error_log($type);
 		error_log($acl);
+		$r = "";
 		try {
 			// $resource = fopen('/path/to/file', 'r');
 			$s3 = static::singleton();
