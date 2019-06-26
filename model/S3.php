@@ -38,10 +38,10 @@ class S3 {
 		error_log($type);
 		error_log($acl);
 		$r = "";
-		$s3client = S3Client::factory();
 		try {
 			// $resource = fopen('/path/to/file', 'r');
 			$s3 = static::singleton();
+			$s3client = S3Client::factory();
 			$resource = EntityBody::factory($data);
 			$r = $s3client->upload($s3->config['bucket_name'], $key, $resource, $acl);
 		} catch (S3Exception $e) {
