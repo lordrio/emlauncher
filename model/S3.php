@@ -58,7 +58,7 @@ class S3 {
 				'Bucket' => $s3->config['bucket_name'],
 				'Key'    => 'data2.txt',
 				'Body'   => 'Hello!',
-				'ACL'    => 'public-read',
+				'ACL'    => 'public-read'
 			));
 
 			$resource = EntityBody::factory($data);
