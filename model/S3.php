@@ -41,7 +41,11 @@ class S3 {
 		try {
 			// $resource = fopen('/path/to/file', 'r');
 			$s3 = static::singleton();
-			$s3client = S3Client::factory();
+			$s3client = S3Client::factory([
+				'region' => 'ap-southeast-1',
+				'version' => 'latest',
+				'signature' => 'v4'
+			]);
 			$resource = EntityBody::factory($data);
 			$s3client->addSubscriber(LogPlugin::getDebugPlugin());
 			$r = $s3client->upload($s3->config['bucket_name'], $key, $resource, $acl);
