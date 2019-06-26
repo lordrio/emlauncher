@@ -2,6 +2,7 @@
 require_once APP_ROOT.'/model/Config.php';
 
 use Guzzle\Plugin\Log\LogPlugin;
+use Guzzle\Http\EntityBody;
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
 
