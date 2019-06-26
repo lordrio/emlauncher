@@ -43,6 +43,7 @@ class S3 {
 			$s3 = static::singleton();
 			$s3client = S3Client::factory();
 			$resource = EntityBody::factory($data);
+			$s3client->addSubscriber(LogPlugin::getDebugPlugin());
 			$r = $s3client->upload($s3->config['bucket_name'], $key, $resource, $acl);
 		} catch (S3Exception $e) {
 			error_log("There was an error uploading the file.\n" . $e->getMessage());
