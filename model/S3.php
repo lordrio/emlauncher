@@ -54,6 +54,12 @@ class S3 {
 				error_log($object['Key'] . "\n");
 			}
 
+			$result = $client->putObject(array(
+				'Bucket' => $s3->config['bucket_name'],
+				'Key'    => 'data.txt',
+				'Body'   => 'Hello!'
+			));
+
 			$resource = EntityBody::factory($data);
 			$s3client->addSubscriber(LogPlugin::getDebugPlugin());
 			$r = $s3client->upload($s3->config['bucket_name'], $key, $resource, $acl);
