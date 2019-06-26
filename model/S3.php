@@ -45,6 +45,15 @@ class S3 {
 				'region' => 'ap-southeast-1',
 				'signature' => 'v4'
 			]);
+
+			$iterator = $s3client->getIterator('ListObjects', array(
+				'Bucket' => $s3->config['bucket_name']
+			));
+			
+			foreach ($iterator as $object) {
+				error_log($object['Key'] . "\n");
+			}
+
 			$resource = EntityBody::factory($data);
 			$s3client->addSubscriber(LogPlugin::getDebugPlugin());
 			$r = $s3client->upload($s3->config['bucket_name'], $key, $resource, $acl);
