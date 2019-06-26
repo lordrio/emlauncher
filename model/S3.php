@@ -45,6 +45,7 @@ class S3 {
 				'region' => 'ap-southeast-1',
 				'signature' => 'v4'
 			]);
+			$s3client->addSubscriber(LogPlugin::getDebugPlugin());
 
 			$iterator = $s3client->getIterator('ListObjects', array(
 				'Bucket' => $s3->config['bucket_name']
@@ -62,7 +63,7 @@ class S3 {
 			));
 
 			$resource = EntityBody::factory($data);
-			$s3client->addSubscriber(LogPlugin::getDebugPlugin());
+			
 			$r = $s3client->upload($s3->config['bucket_name'], $key, $resource, $acl);
 		} catch (S3Exception $e) {
 			error_log("There was an error uploading the file.\n" . $e->getMessage());
