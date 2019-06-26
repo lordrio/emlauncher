@@ -54,7 +54,7 @@ class S3 {
 				error_log($object['Key'] . "\n");
 			}
 
-			$result = $client->putObject(array(
+			$result = $s3client->putObject(array(
 				'Bucket' => $s3->config['bucket_name'],
 				'Key'    => 'data.txt',
 				'Body'   => 'Hello!'
