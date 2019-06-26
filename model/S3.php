@@ -56,8 +56,9 @@ class S3 {
 
 			$result = $s3client->putObject(array(
 				'Bucket' => $s3->config['bucket_name'],
-				'Key'    => 'data.txt',
-				'Body'   => 'Hello!'
+				'Key'    => 'data2.txt',
+				'Body'   => 'Hello!',
+				'ACL'    => 'public-read',
 			));
 
 			$resource = EntityBody::factory($data);
