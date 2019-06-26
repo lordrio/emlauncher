@@ -18,7 +18,6 @@ namespace Aws\Sts;
 
 use Aws\Common\Client\AbstractClient;
 use Aws\Common\Client\ClientBuilder;
-use Aws\Common\Client\UnsignedOperationsListener;
 use Aws\Common\Credentials\Credentials;
 use Aws\Common\Enum\ClientOptions as Options;
 use Aws\Common\Exception\InvalidArgumentException;
@@ -33,6 +32,7 @@ use Symfony\Component\EventDispatcher\Event;
  * Client to interact with AWS Security Token Service
  *
  * @method Model assumeRole(array $args = array()) {@command Sts AssumeRole}
+ * @method Model assumeRoleWithSAML(array $args = array()) {@command Sts AssumeRoleWithSAML}
  * @method Model assumeRoleWithWebIdentity(array $args = array()) {@command Sts AssumeRoleWithWebIdentity}
  * @method Model decodeAuthorizationMessage(array $args = array()) {@command Sts DecodeAuthorizationMessage}
  * @method Model getFederationToken(array $args = array()) {@command Sts GetFederationToken}
@@ -52,7 +52,7 @@ class StsClient extends AbstractClient
      *
      * @return self
      * @throws InvalidArgumentException
-     * @see \Aws\Common\Client\DefaultClient for a list of available configuration options
+     * @link http://docs.aws.amazon.com/aws-sdk-php/guide/latest/configuration.html#client-configuration-options
      */
     public static function factory($config = array())
     {
