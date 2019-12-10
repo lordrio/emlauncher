@@ -10,11 +10,11 @@ class S3 {
 	protected function __construct()
 	{
 		$this->config = Config::get('aws');
-		$this->client = Aws\S3\S3Client::factory(
-			array(
-				'key' => $this->config['key'],
-				'secret' => $this->config['secret'],
-				));
+		$this->client = Aws\S3\S3Client::factory();
+		//	array(
+		//		'key' => $this->config['key'],
+		//		'secret' => $this->config['secret'],
+		//		));
 	}
 	protected function singleton()
 	{
